@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+
+<project name="springWLS" basedir="." default="deploy">
+    <property file="/etc/dice/conf/mercury.ant.properties" />
+
+    <target	name="deploy" description="Deploy the Spring Repacks">
+        <java classpath="${weblogic.jar}" classname="weblogic.Deployer" fork="true" failonerror="true">
+            <arg value="-adminurl"/><arg value="${admin.url}"/>
+            <arg value="-username"/><arg value="${admin.username}"/>
+            <arg value="-password"/><arg value="${admin.password}"/>
+            <arg value="-name"/><arg value="SpringASM"/>
+            <arg value="-source"/><arg value="/usr/local/gemini/library/spring/org.springframework.asm-3.1.1.REPACK.jar"/>
+            <arg value="-targets"/><arg value="${app.target}"/>
+            <arg value="-library"/>
+            <arg value="-redeploy"/>
+        </java>
+        <java classpath="${weblogic.jar}" classname="weblogic.Deployer" fork="true" failonerror="true">
+            <arg value="-adminurl"/><arg value="${admin.url}"/>
+            <arg value="-username"/><arg value="${admin.username}"/>
+            <arg value="-password"/><arg value="${admin.password}"/>
+            <arg value="-name"/><arg value="SpringBeans"/>
+            <arg value="-source"/><arg value="/usr/local/gemini/library/spring/org.springframework.beans-3.1.1.REPACK.jar"/>
+            <arg value="-targets"/><arg value="${app.target}"/>
+            <arg value="-library"/>
+            <arg value="-redeploy"/>
+        </java>
+        <java classpath="${weblogic.jar}" classname="weblogic.Deployer" fork="true" failonerror="true">
+            <arg value="-adminurl"/><arg value="${admin.url}"/>
+            <arg value="-username"/><arg value="${admin.username}"/>
+            <arg value="-password"/><arg value="${admin.password}"/>
+            <arg value="-name"/><arg value="SpringContext"/>
+            <arg value="-source"/><arg value="/usr/local/gemini/library/spring/org.springframework.context-3.1.1.REPACK.jar"/>
+            <arg value="-targets"/><arg value="${app.target}"/>
+            <arg value="-library"/>
+            <arg value="-redeploy"/>
+        </java>
+        <java classpath="${weblogic.jar}" classname="weblogic.Deployer" fork="true" failonerror="true">
+            <arg value="-adminurl"/><arg value="${admin.url}"/>
+            <arg value="-username"/><arg value="${admin.username}"/>
+            <arg value="-password"/><arg value="${admin.password}"/>
+            <arg value="-name"/><arg value="SpringCore"/>
+            <arg value="-source"/><arg value="/usr/local/gemini/library/spring/org.springframework.core-3.1.1.REPACK.jar"/>
+            <arg value="-targets"/><arg value="${app.target}"/>
+            <arg value="-library"/>
+            <arg value="-redeploy"/>
+        </java>
+        <java classpath="${weblogic.jar}" classname="weblogic.Deployer" fork="true" failonerror="true">
+            <arg value="-adminurl"/><arg value="${admin.url}"/>
+            <arg value="-username"/><arg value="${admin.username}"/>
+            <arg value="-password"/><arg value="${admin.password}"/>
+            <arg value="-name"/><arg value="SpringExpression"/>
+            <arg value="-source"/><arg value="/usr/local/gemini/library/spring/org.springframework.expression-3.1.1.REPACK.jar"/>
+            <arg value="-targets"/><arg value="${app.target}"/>
+            <arg value="-library"/>
+            <arg value="-redeploy"/>
+        </java>
+        <java classpath="${weblogic.jar}" classname="weblogic.Deployer" fork="true" failonerror="true">
+            <arg value="-adminurl"/><arg value="${admin.url}"/>
+            <arg value="-username"/><arg value="${admin.username}"/>
+            <arg value="-password"/><arg value="${admin.password}"/>
+            <arg value="-name"/><arg value="SpringWebServlet"/>
+            <arg value="-source"/><arg value="/usr/local/gemini/library/spring/org.springframework.web.servlet-3.1.1.REPACK.jar"/>
+            <arg value="-targets"/><arg value="${app.target}"/>
+            <arg value="-library"/>
+            <arg value="-redeploy"/>
+        </java>
+        <java classpath="${weblogic.jar}" classname="weblogic.Deployer" fork="true" failonerror="true">
+            <arg value="-adminurl"/><arg value="${admin.url}"/>
+            <arg value="-username"/><arg value="${admin.username}"/>
+            <arg value="-password"/><arg value="${admin.password}"/>
+            <arg value="-name"/><arg value="SpringWeb"/>
+            <arg value="-source"/><arg value="/usr/local/gemini/library/spring/org.springframework.web-3.1.1.REPACK.jar"/>
+            <arg value="-targets"/><arg value="${app.target}"/>
+            <arg value="-library"/>
+            <arg value="-redeploy"/>
+        </java>
+    </target>
+</project>
