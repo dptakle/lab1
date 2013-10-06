@@ -1,0 +1,30 @@
+#!/bin/bash
+
+cd `dirname ${0}`/..
+
+tmp=`date | md5sum | cut -b0-8`
+echo Working in work/${tmp}
+mkdir work/${tmp}
+
+echo "Specification-Version: 3.1.1" > /tmp/Specification-Version
+cd work
+for i in `ls -1 ../media/org*RELEASE*`
+do
+	echo Working on ${i}
+	(cd ${tmp}; rm -rf *; jar xf ../${i})
+	cat ${tmp}/META-INF/MANIFEST.MF /tmp/Specification-Version > /tmp/_WORK.MF
+	dos2unix /tmp/_WORK.MF >/dev/null 2>/dev/null
+	grep -v "^$" /tmp/_WORK.MF >/tmp/WORK.MF; rm /tmp/_WORK.MF
+	newName=`echo ${i} | awk -F'/' '{print $3;}' | sed 's/RELEASE/REPACK/g'`
+	jar cfm ../lib/${newName} /tmp/WORK.MF -C ${tmp} .
+done
+rm -rf ${tmp}
+
+if [ -d "/usr/local/gemini/library/spring" ]
+then
+	echo -n "Would you like to copy the repacks to /usr/local/gemini/library/spring ?: [y/n]"; read answer
+	if [ "$answer" == "y" ]
+	then
+		cp ../lib/*REPACK* /usr/local/gemini/library/spring/.
+	fi
+fi
