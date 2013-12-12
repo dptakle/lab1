@@ -23,3 +23,5 @@ winterfell:lab1 duket$ find .git
 .git/refs
 .git/refs/heads
 .git/refs/tags 42
+
+1111111111111111111111
